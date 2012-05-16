@@ -38,11 +38,6 @@ YUI({filter: 'debug', combine: false}).use('node', function (Y) {
     }
 
     start.on('click', function () {
-        // disable config inputs
-        url.set('disabled', true);
-        auto.set('disabled', true);
-        loads.set('disabled', true);
-
         automated = auto.get('checked');
         numLoads = loads.get('value') || 0;
 
@@ -52,11 +47,6 @@ YUI({filter: 'debug', combine: false}).use('node', function (Y) {
     end.on('click', function () {
         automated = false;
         destroy();
-
-        // enable config inputs
-        url.set('disabled', false);
-        auto.set('disabled', false);
-        loads.set('disabled', false);
     });
 
 });
