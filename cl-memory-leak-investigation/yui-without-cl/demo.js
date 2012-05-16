@@ -4,8 +4,10 @@ YUI({filter: 'debug', combine: false}).use('node', function (Y) {
         start       = Y.one('#start'),
         end         = Y.one('#end'),
         url         = Y.one('#url'),
+        loads       = Y.one('#loads'),
         auto        = Y.one('#automate'),
         count       = 0,
+        numLoads,
         automated,
         iframe;
 
@@ -30,7 +32,7 @@ YUI({filter: 'debug', combine: false}).use('node', function (Y) {
             console.markTimeline(++count);
         }
 
-        if (automated) {
+        if (automated && (numLoads && count < numLoads)) {
             create();
         }
     }
@@ -39,8 +41,10 @@ YUI({filter: 'debug', combine: false}).use('node', function (Y) {
         // disable config inputs
         url.set('disabled', true);
         auto.set('disabled', true);
+        loads.set('disabled', true);
 
         automated = auto.get('checked');
+        numLoads = loads.get('value') || 0;
 
         create();
     });
@@ -52,6 +56,7 @@ YUI({filter: 'debug', combine: false}).use('node', function (Y) {
         // enable config inputs
         url.set('disabled', false);
         auto.set('disabled', false);
+        loads.set('disabled', false);
     });
 
 });
