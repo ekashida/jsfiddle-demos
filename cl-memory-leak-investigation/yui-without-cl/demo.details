@@ -1,0 +1,2 @@
+name: iframe creation/destruction without cl
+description: Memory consumption demo for a YUI implementation of basic iframe creation/destruction. This will serve as a baseline for comparison against basic iframe creation/destruction using the cl.
