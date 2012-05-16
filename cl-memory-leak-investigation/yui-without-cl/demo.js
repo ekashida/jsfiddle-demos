@@ -5,6 +5,7 @@ YUI({filter: 'debug', combine: false}).use('node', function (Y) {
         end         = Y.one('#end'),
         url         = Y.one('#url'),
         auto        = Y.one('#automate'),
+        count       = 0,
         automated,
         iframe;
 
@@ -24,6 +25,10 @@ YUI({filter: 'debug', combine: false}).use('node', function (Y) {
     function destroy () {
         iframe.remove(true);
         iframe = null;
+
+        if (console.markTimeline) {
+            console.markTimeline(++count);
+        }
 
         if (automated) {
             create();
