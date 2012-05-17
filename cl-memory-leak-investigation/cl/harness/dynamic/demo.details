@@ -1,0 +1,2 @@
+name: iframe creation/destruction with a new cl instance every time
+description: Memory consumption demo for iframe creation/destruction using a new instance cl module every time.
