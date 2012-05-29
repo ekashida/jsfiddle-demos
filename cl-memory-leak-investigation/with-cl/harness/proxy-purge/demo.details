@@ -1,0 +1,2 @@
+name: iframe creation/destruction using a single cl instance
+description: Memory consumption demo for iframe creation/destruction using a single instance of the cl module that attempts to clean up after itself through the cl proxy.
