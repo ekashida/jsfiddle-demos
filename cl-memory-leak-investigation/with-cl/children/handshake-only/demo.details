@@ -1,2 +1,3 @@
 name: handshake-only
 description: Demo of a cl child that simply signals readiness to the parent after completing the handshake.
+jsfiddle: http://jsfiddle.net/ekashida/fzrUC/
