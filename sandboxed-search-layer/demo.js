@@ -6,26 +6,33 @@ YUI({
 
     Y.CL = Y.CL || new Y.CommunicationLayer();
 
-    // src attribute is required for the handshake.
+    // 'src' attribute is required for the handshake so make sure to set one
+    // before registration.
     var iframe = Y.Node.create(
-        '<iframe src="http://sd.mh.search.yahoo.com/sd/app" width=100% height=400>'
+        '<iframe src=http://sd.mh.search.yahoo.com/sd/app width=100% height=300px>'
     );
 
-    // CL bindings for the iframe are defined in the registration callback.
+    // CL bindings are defined in the callback using the proxy object.
     Y.CL.register(iframe, function (proxy) {
-        Y.log('Registration has succeeded', 'debug', NAME);
+        Y.log('Registration has succeeded', 'info', NAME);
 
-        // Search layer pings host for pageinfo and fires 'ready' after it's
-        // done with its initialization.
+        // The search layer pings its host for initialization data (e.g., the
+        // initial query, the current host page url, etc). Once it is
+        // initialized, it notifies the host that it is ready. This binding
+        // simply responds to the ping for pageinfo (e.callback()).
         proxy.on('pageinfo', function (e) {
-            Y.log('Received pageinfo from host', 'error');
-            // Search layer assumes defaults, no need to pass anything.
+            Y.log('Received "pageinfo" request from host', 'info', NAME);
+
+            // Defaults are assumed when no data is passed.
             e.callback();
         });
 
         // Define what should happen when the search layer says it's ready.
+        // This is where you would remove any loading indicators and begin
+        // interaction.
         proxy.ready(function () {
             Y.later(2000, null, function () {
+                Y.log('Changing the query string to "aapl"', 'info', NAME);
                 proxy.fire('query:change', { p: 'aapl' });
             });
         });
